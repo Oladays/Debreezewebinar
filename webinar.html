@@ -3,258 +3,700 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Watch the Webinar</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+
 <style>
-  :root{
-    --bg: #0F1117;
-    --panel: #171A24;
-    --field: #12141C;
-    --line: #2A2E3D;
-    --ink: #F2F0EB;
-    --muted: #9095AC;
-    --gold: #E8A33D;
-    --teal: #3FBFAE;
+
+:root{
+  --bg:#0F1117;
+  --panel:#171A24;
+  --field:#12141C;
+  --line:#2A2E3D;
+  --ink:#F2F0EB;
+  --muted:#9095AC;
+  --gold:#E8A33D;
+  --teal:#3FBFAE;
+}
+
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+
+html,
+body{
+  height:100%;
+}
+
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+
+  font-family:'Inter',sans-serif;
+
+  line-height:1.5;
+
+  -webkit-font-smoothing:antialiased;
+
+  display:flex;
+  flex-direction:column;
+
+  overflow:hidden;
+}
+
+
+h1,
+.badge{
+  font-family:'Space Grotesk',sans-serif;
+}
+
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.topbar{
+
+  border-bottom:1px solid var(--line);
+
+  padding:16px 20px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  flex-shrink:0;
+
+}
+
+
+.brand{
+
+  font-weight:700;
+
+  font-size:14.5px;
+
+}
+
+
+.brand span{
+
+  color:var(--gold);
+
+}
+
+
+.badge{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  font-size:11.5px;
+
+  font-weight:700;
+
+  letter-spacing:.06em;
+
+  text-transform:uppercase;
+
+  color:#FF6B5E;
+
+}
+
+
+.badge .dot{
+
+  width:8px;
+
+  height:8px;
+
+  border-radius:50%;
+
+  background:#FF6B5E;
+
+  box-shadow:
+    0 0 0 3px rgba(255,107,94,.18);
+
+  animation:pulse 1.6s infinite;
+
+}
+
+
+@keyframes pulse{
+
+  0%,
+  100%{
+    opacity:1;
   }
 
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html, body{height:100%;}
-
-  body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Inter', sans-serif;
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-    display:flex;
-    flex-direction:column;
-    overflow:hidden;
+  50%{
+    opacity:.45;
   }
 
-  h1, .badge{font-family:'Space Grotesk', sans-serif;}
+}
 
-  /* ---------- Top bar ---------- */
+
+
+/* =========================================
+   VIDEO
+========================================= */
+
+.video-frame{
+
+  position:relative;
+
+  width:100%;
+
+  padding-top:42%;
+
+  background:#000;
+
+  flex-shrink:0;
+
+  overflow:hidden;
+
+}
+
+
+/*
+   YouTube iframe.
+
+   Completely non-interactive.
+*/
+
+.video-frame iframe{
+
+  position:absolute;
+
+  top:0;
+
+  left:0;
+
+  width:100%;
+
+  height:100%;
+
+  border:0;
+
+  pointer-events:none;
+
+}
+
+
+/*
+   Invisible layer above video.
+
+   Prevents taps/clicks from reaching
+   the YouTube player.
+*/
+
+.video-touch-shield{
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:20;
+
+  background:transparent;
+
+  pointer-events:auto;
+
+  touch-action:none;
+
+  user-select:none;
+
+}
+
+
+
+/* =========================================
+   META STRIP
+========================================= */
+
+.meta-strip{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:12px 20px;
+
+  border-bottom:1px solid var(--line);
+
+  font-size:13px;
+
+  color:var(--muted);
+
+  flex-shrink:0;
+
+}
+
+
+.meta-strip .viewers{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:6px;
+
+}
+
+
+.meta-strip strong{
+
+  color:var(--ink);
+
+}
+
+
+
+/* =========================================
+   SUPPORT LINK
+========================================= */
+
+.support-link{
+
+  color:var(--gold);
+
+  text-decoration:none;
+
+  font-weight:600;
+
+  margin-left:12px;
+
+  white-space:nowrap;
+
+}
+
+
+.support-link:hover{
+
+  text-decoration:underline;
+
+}
+
+
+
+/* =========================================
+   COMMENTS
+========================================= */
+
+.comments-feed{
+
+  flex:1;
+
+  overflow-y:auto;
+
+  padding:16px 20px;
+
+  -webkit-overflow-scrolling:touch;
+
+  scroll-behavior:smooth;
+
+}
+
+
+.comment{
+
+  display:flex;
+
+  gap:12px;
+
+  padding:12px 14px;
+
+  background:var(--panel);
+
+  border-radius:12px;
+
+  margin-bottom:10px;
+
+  max-width:92%;
+
+  opacity:0;
+
+  transform:translateY(10px);
+
+  animation:commentAppear .45s ease forwards;
+
+}
+
+
+@keyframes commentAppear{
+
+  from{
+
+    opacity:0;
+
+    transform:translateY(10px);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+  }
+
+}
+
+
+.avatar{
+
+  width:32px;
+
+  height:32px;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--teal),
+      var(--gold)
+    );
+
+  flex-shrink:0;
+
+}
+
+
+.comment-body{
+
+  flex:1;
+
+  min-width:0;
+
+}
+
+
+.comment-name{
+
+  font-weight:600;
+
+  font-size:13.5px;
+
+}
+
+
+.comment-role{
+
+  font-size:11.5px;
+
+  color:var(--muted);
+
+  margin-left:6px;
+
+  font-weight:400;
+
+}
+
+
+.comment-text{
+
+  font-size:14px;
+
+  color:#C9CCDA;
+
+  margin-top:3px;
+
+  word-wrap:break-word;
+
+}
+
+
+/*
+   IMPORTANT:
+
+   There is deliberately NO timestamp,
+   date, time, "ago", or clock element
+   anywhere inside a comment.
+*/
+
+
+.empty-note{
+
+  font-size:13.5px;
+
+  color:var(--muted);
+
+  text-align:center;
+
+  padding:32px 0;
+
+}
+
+
+
+/* =========================================
+   COMMENT FORM
+========================================= */
+
+.comment-form{
+
+  display:flex;
+
+  gap:10px;
+
+  padding:
+    14px
+    20px
+    calc(14px + env(safe-area-inset-bottom));
+
+  border-top:1px solid var(--line);
+
+  background:var(--bg);
+
+  flex-shrink:0;
+
+}
+
+
+.comment-form input{
+
+  flex:1;
+
+  background:var(--field);
+
+  border:1px solid var(--line);
+
+  color:var(--ink);
+
+  padding:14px 16px;
+
+  border-radius:24px;
+
+  font-size:14.5px;
+
+  font-family:inherit;
+
+}
+
+
+.comment-form input::placeholder{
+
+  color:#5C6079;
+
+}
+
+
+.comment-form input:focus{
+
+  outline:2px solid var(--teal);
+
+  outline-offset:1px;
+
+  border-color:var(--teal);
+
+}
+
+
+.comment-form button{
+
+  background:var(--gold);
+
+  color:#1A1204;
+
+  border:none;
+
+  padding:0 22px;
+
+  border-radius:24px;
+
+  font-weight:700;
+
+  font-size:14px;
+
+  font-family:inherit;
+
+  cursor:pointer;
+
+  flex-shrink:0;
+
+}
+
+
+.comment-form button:active{
+
+  transform:scale(.97);
+
+}
+
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:600px){
+
   .topbar{
-    border-bottom:1px solid var(--line);
-    padding:16px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-shrink:0;
+
+    padding:14px 16px;
+
   }
 
-  .brand{font-weight:700; font-size:14.5px;}
-  .brand span{color:var(--gold);}
 
-  .badge{
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
-    font-size:11.5px;
-    font-weight:700;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:#FF6B5E;
-  }
-
-  .badge .dot{
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#FF6B5E;
-    box-shadow:0 0 0 3px rgba(255,107,94,0.18);
-    animation:pulse 1.6s infinite;
-  }
-
-  @keyframes pulse{
-    0%,100%{opacity:1;}
-    50%{opacity:0.45;}
-  }
-
-  /* ---------- Video ---------- */
-  .video-frame{
-    position:relative;
-    width:100%;
-    padding-top:42%;
-    background:#000;
-    flex-shrink:0;
-  }
-
-  .video-frame iframe{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    border:0;
-  }
-
-  /* ---------- Meta strip ---------- */
   .meta-strip{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 20px;
-    border-bottom:1px solid var(--line);
-    font-size:13px;
-    color:var(--muted);
-    flex-shrink:0;
+
+    padding:11px 16px;
+
+    gap:8px;
+
   }
+
 
   .meta-strip .viewers{
-    display:flex;
-    align-items:center;
-    gap:6px;
+
+    flex-shrink:0;
+
   }
 
-  .meta-strip strong{color:var(--ink);}
 
-  /* ---------- Support ---------- */
   .support-link{
-    color:var(--gold);
-    text-decoration:none;
-    font-weight:600;
-    margin-left:12px;
+
+    margin-left:7px;
+
   }
 
-  .support-link:hover{
-    text-decoration:underline;
-  }
 
-  /* ---------- Comment feed ---------- */
   .comments-feed{
-    flex:1;
-    overflow-y:auto;
-    padding:16px 20px;
-    -webkit-overflow-scrolling:touch;
-  }
 
-  .comment{
-    display:flex;
-    gap:12px;
-    padding:12px 14px;
-    background:var(--panel);
-    border-radius:12px;
-    margin-bottom:10px;
-    max-width:92%;
-  }
-
-  .avatar{
-    width:32px;
-    height:32px;
-    border-radius:50%;
-    background:linear-gradient(135deg, var(--teal), var(--gold));
-    flex-shrink:0;
-  }
-
-  .comment-body{
-    flex:1;
-    min-width:0;
-  }
-
-  .comment-name{
-    font-weight:600;
-    font-size:13.5px;
-  }
-
-  .comment-role{
-    font-size:11.5px;
-    color:var(--muted);
-    margin-left:6px;
-    font-weight:400;
-  }
-
-  .comment-text{
-    font-size:14px;
-    color:#C9CCDA;
-    margin-top:3px;
-    word-wrap:break-word;
-  }
-
-  .empty-note{
-    font-size:13.5px;
-    color:var(--muted);
-    text-align:center;
-    padding:32px 0;
-  }
-
-  /* ---------- Sticky input bar ---------- */
-  .comment-form{
-    display:flex;
-    gap:10px;
-    padding:14px 20px calc(14px + env(safe-area-inset-bottom));
-    border-top:1px solid var(--line);
-    background:var(--bg);
-    flex-shrink:0;
-  }
-
-  .comment-form input{
-    flex:1;
-    background:var(--field);
-    border:1px solid var(--line);
-    color:var(--ink);
     padding:14px 16px;
-    border-radius:24px;
-    font-size:14.5px;
-    font-family:inherit;
+
   }
 
-  .comment-form input::placeholder{color:#5C6079;}
 
-  .comment-form input:focus{
-    outline:2px solid var(--teal);
-    outline-offset:1px;
-    border-color:var(--teal);
+  .comment-form{
+
+    padding-left:16px;
+
+    padding-right:16px;
+
   }
+
 
   .comment-form button{
-    background:var(--gold);
-    color:#1A1204;
-    border:none;
-    padding:0 22px;
-    border-radius:24px;
-    font-weight:700;
-    font-size:14px;
-    font-family:inherit;
-    cursor:pointer;
-    flex-shrink:0;
+
+    padding:0 18px;
+
   }
 
-  .comment-form button:active{
-    transform:scale(0.97);
+}
+
+
+@media(prefers-reduced-motion:reduce){
+
+  *{
+
+    animation:none !important;
+
+    transition:none !important;
+
   }
 
-  @media (prefers-reduced-motion: reduce){
-    *{
-      animation:none !important;
-      transition:none !important;
-    }
-  }
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================================
+     TOP BAR
+========================================= -->
+
 <div class="topbar">
-  <div class="brand">WEBINAR<span>.</span></div>
+
+  <div class="brand">
+
+    WEBINAR<span>.</span>
+
+  </div>
+
 
   <span class="badge">
+
     <span class="dot"></span>
+
     Recording
+
   </span>
+
 </div>
+
+
+
+<!-- =========================================
+     VIDEO
+========================================= -->
 
 <div class="video-frame">
+
   <div id="youtubePlayer"></div>
+
+
+  <!--
+     Invisible touch shield.
+     The viewer cannot interact with
+     the YouTube player.
+  -->
+
+  <div
+    class="video-touch-shield"
+    aria-hidden="true"
+  ></div>
+
 </div>
 
+
+
+<!-- =========================================
+     META STRIP
+========================================= -->
+
 <div class="meta-strip">
-  <span id="welcomeNote">Welcome — enjoy the session.</span>
+
+  <span id="welcomeNote">
+
+    Welcome — enjoy the session.
+
+  </span>
+
 
   <span class="viewers">
-    💬 <strong id="commentCount">0</strong> comments
+
+    💬
+
+    <strong id="commentCount">
+      0
+    </strong>
+
+    comments
+
 
     <a
       class="support-link"
@@ -262,362 +704,885 @@
       target="_blank"
       rel="noopener noreferrer"
     >
+
       Click here to get started
+
     </a>
+
   </span>
+
 </div>
 
-<div class="comments-feed" id="commentsFeed">
-  <p class="empty-note" id="emptyNote">
+
+
+<!-- =========================================
+     COMMENT FEED
+========================================= -->
+
+<div
+  class="comments-feed"
+  id="commentsFeed"
+>
+
+  <p
+    class="empty-note"
+    id="emptyNote"
+  >
+
     No comments yet — be the first to share your thoughts.
+
   </p>
+
 </div>
+
+
+
+<!-- =========================================
+     COMMENT INPUT
+========================================= -->
 
 <div class="comment-form">
+
   <input
     type="text"
     id="commentInput"
     placeholder="Drop your comment..."
+    autocomplete="off"
   >
 
-  <button id="commentBtn">Send</button>
+
+  <button id="commentBtn">
+
+    Send
+
+  </button>
+
 </div>
 
+
+
 <script>
-  /* ---------- Name from registration page ---------- */
-
-  const params = new URLSearchParams(window.location.search);
-  const name = params.get('name');
-
-  if(name){
-    document.getElementById('welcomeNote').innerHTML =
-      `Welcome, <strong>${name.replace(/</g,'&lt;')}</strong>`;
-  }
 
 
-  /* ---------- YouTube Player ---------- */
+/* =====================================================
+   NAME FROM REGISTRATION PAGE
+===================================================== */
 
-  let player;
-  let lastAllowedTime = 0;
-  let videoStarted = false;
-  let videoFinished = false;
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
 
-  const YOUTUBE_VIDEO_ID = 'AW4IqId5kdM';
 
-  function onYouTubeIframeAPIReady(){
+const name =
+  params.get('name');
 
-    player = new YT.Player('youtubePlayer', {
 
-      videoId: YOUTUBE_VIDEO_ID,
+if(name){
 
-      playerVars:{
-        autoplay:0,
-        controls:0,
-        disablekb:1,
-        fs:1,
-        rel:0,
-        playsinline:1,
-        modestbranding:1
-      },
+  const safeName =
+    name
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;');
 
-      events:{
-        onReady:onPlayerReady,
-        onStateChange:onPlayerStateChange
+
+  document.getElementById(
+    'welcomeNote'
+  ).innerHTML =
+    `Welcome, <strong>${safeName}</strong>`;
+
+}
+
+
+
+/* =====================================================
+   YOUTUBE PLAYER
+===================================================== */
+
+let player;
+
+let lastAllowedTime = 0;
+
+let videoStarted = false;
+
+let videoFinished = false;
+
+
+const YOUTUBE_VIDEO_ID =
+  'AW4IqId5kdM';
+
+
+
+/*
+   YouTube API ready
+*/
+
+function onYouTubeIframeAPIReady(){
+
+  player =
+    new YT.Player(
+      'youtubePlayer',
+      {
+
+        videoId:YOUTUBE_VIDEO_ID,
+
+
+        playerVars:{
+
+          /*
+             AUTOPLAY
+          */
+
+          autoplay:1,
+
+
+          /*
+             MUTE REQUIRED FOR
+             MOBILE AUTOPLAY
+          */
+
+          mute:1,
+
+
+          /*
+             REMOVE CONTROLS
+          */
+
+          controls:0,
+
+
+          /*
+             DISABLE KEYBOARD
+          */
+
+          disablekb:1,
+
+
+          /*
+             REMOVE FULLSCREEN
+          */
+
+          fs:0,
+
+
+          /*
+             NO RELATED VIDEOS
+          */
+
+          rel:0,
+
+
+          /*
+             MOBILE INLINE
+          */
+
+          playsinline:1,
+
+
+          /*
+             MINIMAL BRANDING
+          */
+
+          modestbranding:1,
+
+
+          /*
+             REMOVE ANNOTATIONS
+          */
+
+          iv_load_policy:3
+
+        },
+
+
+        events:{
+
+          onReady:onPlayerReady,
+
+          onStateChange:onPlayerStateChange
+
+        }
+
       }
 
-    });
+    );
 
-  }
+}
 
 
-  function onPlayerReady(event){
 
-    lastAllowedTime = 0;
+/* =====================================================
+   PLAYER READY
+===================================================== */
+
+function onPlayerReady(event){
+
+  try{
 
     /*
-      Check the playback position regularly.
-      If the viewer attempts to jump forward or backward,
-      return the video to the last legitimate position.
+       Keep autoplay muted.
     */
 
-    setInterval(function(){
+    event.target.mute();
 
-      if(!player || videoFinished) return;
 
-      const state = player.getPlayerState();
+    /*
+       Start video.
+    */
+
+    event.target.playVideo();
+
+  }
+
+  catch(error){
+
+    console.log(
+      'Autoplay failed:',
+      error
+    );
+
+  }
+
+
+  lastAllowedTime = 0;
+
+
+
+  /*
+     Monitor playback position.
+
+     This prevents large seeking jumps.
+  */
+
+  setInterval(
+
+    function(){
 
       if(
-        state === YT.PlayerState.PLAYING ||
-        state === YT.PlayerState.PAUSED
+        !player ||
+        videoFinished
       ){
 
-        const currentTime = player.getCurrentTime();
+        return;
+
+      }
+
+
+      const state =
+        player.getPlayerState();
+
+
+      if(
+
+        state ===
+        YT.PlayerState.PLAYING
+
+        ||
+
+        state ===
+        YT.PlayerState.PAUSED
+
+      ){
+
+        const currentTime =
+          player.getCurrentTime();
+
 
         if(!videoStarted){
-          lastAllowedTime = currentTime;
+
+          lastAllowedTime =
+            currentTime;
+
           return;
+
         }
 
-        /*
-          Normal playback moves forward gradually.
-          A large jump means the viewer attempted to seek.
-        */
 
-        const difference = currentTime - lastAllowedTime;
+        const difference =
+          currentTime -
+          lastAllowedTime;
 
-        if(difference > 2.5 || difference < -1.5){
 
-          player.seekTo(lastAllowedTime, true);
+        if(
 
-        }else if(state === YT.PlayerState.PLAYING){
+          difference > 2.5
 
-          lastAllowedTime = currentTime;
+          ||
+
+          difference < -1.5
+
+        ){
+
+          player.seekTo(
+
+            lastAllowedTime,
+
+            true
+
+          );
+
+        }
+
+        else if(
+
+          state ===
+          YT.PlayerState.PLAYING
+
+        ){
+
+          lastAllowedTime =
+            currentTime;
 
         }
 
       }
 
-    }, 500);
+    },
+
+    500
+
+  );
+
+}
+
+
+
+/* =====================================================
+   PLAYER STATE
+===================================================== */
+
+function onPlayerStateChange(event){
+
+  if(
+
+    event.data ===
+    YT.PlayerState.PLAYING
+
+  ){
+
+    videoStarted = true;
 
   }
 
 
-  function onPlayerStateChange(event){
+  if(
 
-    if(event.data === YT.PlayerState.PLAYING){
+    event.data ===
+    YT.PlayerState.ENDED
 
-      videoStarted = true;
+  ){
 
-    }
+    videoFinished = true;
 
 
-    if(event.data === YT.PlayerState.ENDED){
-
-      videoFinished = true;
-      lastAllowedTime = player.getDuration();
-
-    }
+    lastAllowedTime =
+      player.getDuration();
 
   }
 
-
-  /* Load YouTube IFrame API */
-
-  const youtubeScript = document.createElement('script');
-
-  youtubeScript.src =
-    'https://www.youtube.com/iframe_api';
-
-  document.head.appendChild(youtubeScript);
+}
 
 
-  /* ---------- Comments ---------- */
 
-  const commentsFeed =
-    document.getElementById('commentsFeed');
+/* =====================================================
+   LOAD YOUTUBE API
+===================================================== */
 
-  const emptyNote =
-    document.getElementById('emptyNote');
+const youtubeScript =
+  document.createElement(
+    'script'
+  );
 
-  const commentInput =
-    document.getElementById('commentInput');
 
-  const commentCount =
-    document.getElementById('commentCount');
+youtubeScript.src =
+  'https://www.youtube.com/iframe_api';
 
-  let count = 0;
+
+document.head.appendChild(
+  youtubeScript
+);
+
+
+
+/* =====================================================
+   COMMENT ELEMENTS
+===================================================== */
+
+const commentsFeed =
+  document.getElementById(
+    'commentsFeed'
+  );
+
+
+const commentInput =
+  document.getElementById(
+    'commentInput'
+  );
+
+
+const commentCount =
+  document.getElementById(
+    'commentCount'
+  );
+
+
+let count = 0;
+
+
+
+/* =====================================================
+   GOOGLE SHEET
+===================================================== */
+
+const GOOGLE_SHEET_ID =
+  '1TWYiRuuZiLuuxlTwGkxgZvW97Yyxn1nV';
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+  return String(value || '')
+
+    .replace(/&/g,'&amp;')
+
+    .replace(/</g,'&lt;')
+
+    .replace(/>/g,'&gt;')
+
+    .replace(/"/g,'&quot;')
+
+    .replace(/'/g,'&#039;');
+
+}
+
+
+
+/* =====================================================
+   ADD COMMENT
+===================================================== */
+
+function addComment(
+
+  displayName,
+
+  text,
+
+  role='Attendee'
+
+){
+
+  if(!text){
+
+    return;
+
+  }
 
 
   /*
-    Google Sheet
-
-    Sheet:
-    https://docs.google.com/spreadsheets/d/1TWYiRuuZiLuuxlTwGkxgZvW97Yyxn1nV/edit
+     Remove empty message.
   */
 
-  const GOOGLE_SHEET_ID =
-    '1TWYiRuuZiLuuxlTwGkxgZvW97Yyxn1nV';
+  const currentEmpty =
+    document.getElementById(
+      'emptyNote'
+    );
 
 
-  function escapeHTML(value){
+  if(currentEmpty){
 
-    return String(value || '')
-      .replace(/&/g,'&amp;')
-      .replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;')
-      .replace(/'/g,'&#039;');
+    currentEmpty.remove();
 
   }
 
 
-  function addComment(displayName, text, role = 'Attendee'){
+  /*
+     Create comment element.
+  */
 
-    if(!text) return;
+  const el =
+    document.createElement(
+      'div'
+    );
 
-    if(emptyNote){
-      emptyNote.remove();
-    }
 
-    const el = document.createElement('div');
+  el.className =
+    'comment';
 
-    el.className = 'comment';
 
-    el.innerHTML = `
-      <div class="avatar"></div>
+  /*
+     IMPORTANT:
 
-      <div class="comment-body">
+     There is NO timestamp here.
+  */
 
-        <span class="comment-name">
-          ${escapeHTML(displayName)}
+  el.innerHTML = `
 
-          <span class="comment-role">
-            ${escapeHTML(role)}
-          </span>
+    <div class="avatar"></div>
+
+    <div class="comment-body">
+
+      <span class="comment-name">
+
+        ${escapeHTML(displayName)}
+
+        <span class="comment-role">
+
+          ${escapeHTML(role)}
+
         </span>
 
-        <p class="comment-text"></p>
+      </span>
 
-      </div>
-    `;
 
-    el.querySelector('.comment-text').textContent = text;
+      <p class="comment-text"></p>
 
-    commentsFeed.appendChild(el);
+    </div>
 
-    count++;
+  `;
 
-    commentCount.textContent = count;
 
-  }
+  el.querySelector(
+    '.comment-text'
+  ).textContent =
+    text;
 
 
   /*
-    Load comments from the Google Sheet.
-
-    The sheet needs to be publicly accessible.
-    The code accepts common column names such as:
-    Name / Comment
-    or
-    name / comment
+     Add comment.
   */
 
-  async function loadComments(){
-
-    try{
-
-      const url =
-        `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json`;
-
-      const response =
-        await fetch(url);
-
-      if(!response.ok){
-        throw new Error('Unable to load comments');
-      }
-
-      const raw =
-        await response.text();
-
-      const jsonText =
-        raw.substring(
-          raw.indexOf('{'),
-          raw.lastIndexOf('}') + 1
-        );
-
-      const data =
-        JSON.parse(jsonText);
-
-      const rows =
-        data.table.rows || [];
-
-      const headers =
-        (data.table.cols || []).map(function(col){
-
-          return String(col.label || '')
-            .trim()
-            .toLowerCase();
-
-        });
+  commentsFeed.appendChild(
+    el
+  );
 
 
-      let nameIndex =
-        headers.findIndex(function(header){
+  /*
+     Increase count.
+  */
 
-          return (
-            header === 'name' ||
-            header === 'username' ||
+  count++;
+
+  commentCount.textContent =
+    count;
+
+
+  /*
+     Scroll to newest comment.
+  */
+
+  requestAnimationFrame(
+
+    function(){
+
+      commentsFeed.scrollTo({
+
+        top:
+          commentsFeed.scrollHeight,
+
+        behavior:
+          'smooth'
+
+      });
+
+    }
+
+  );
+
+}
+
+
+
+/* =====================================================
+   LOAD COMMENTS
+===================================================== */
+
+async function loadComments(){
+
+  try{
+
+    const url =
+      `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json`;
+
+
+    const response =
+      await fetch(url);
+
+
+    if(!response.ok){
+
+      throw new Error(
+        'Unable to load comments'
+      );
+
+    }
+
+
+    const raw =
+      await response.text();
+
+
+    /*
+       Extract JSON.
+    */
+
+    const jsonText =
+      raw.substring(
+
+        raw.indexOf('{'),
+
+        raw.lastIndexOf('}') + 1
+
+      );
+
+
+    const data =
+      JSON.parse(
+        jsonText
+      );
+
+
+    const rows =
+      data.table.rows || [];
+
+
+    /*
+       Find column headers.
+    */
+
+    const headers =
+      (data.table.cols || [])
+      .map(
+
+        function(col){
+
+          return String(
+            col.label || ''
+          )
+          .trim()
+          .toLowerCase();
+
+        }
+
+      );
+
+
+    /*
+       Name column.
+    */
+
+    let nameIndex =
+      headers.findIndex(
+
+        function(header){
+
+          return(
+
+            header === 'name'
+
+            ||
+
+            header === 'username'
+
+            ||
+
             header === 'user'
+
           );
 
-        });
+        }
+
+      );
 
 
-      let commentIndex =
-        headers.findIndex(function(header){
+    /*
+       Comment column.
+    */
 
-          return (
-            header === 'comment' ||
-            header === 'comments' ||
-            header === 'message' ||
+    let commentIndex =
+      headers.findIndex(
+
+        function(header){
+
+          return(
+
+            header === 'comment'
+
+            ||
+
+            header === 'comments'
+
+            ||
+
+            header === 'message'
+
+            ||
+
             header === 'text'
+
           );
 
-        });
+        }
+
+      );
 
 
-      /*
-        If the sheet does not have recognizable headers,
-        use the first two columns:
-        first = name
-        second = comment
-      */
+    /*
+       Fallback.
+    */
 
-      if(nameIndex === -1){
-        nameIndex = 0;
-      }
+    if(nameIndex === -1){
 
-      if(commentIndex === -1){
-        commentIndex = 1;
-      }
+      nameIndex = 0;
+
+    }
 
 
-      rows.forEach(function(row){
+    if(commentIndex === -1){
+
+      commentIndex = 1;
+
+    }
+
+
+
+    /* =================================================
+       COMMENT QUEUE
+    ================================================= */
+
+    const commentQueue = [];
+
+
+    rows.forEach(
+
+      function(row){
 
         const cells =
           row.c || [];
 
+
         const displayName =
           cells[nameIndex] &&
           cells[nameIndex].v
-            ? String(cells[nameIndex].v)
+
+            ? String(
+                cells[nameIndex].v
+              )
+
             : 'Attendee';
 
 
         const commentText =
           cells[commentIndex] &&
           cells[commentIndex].v
-            ? String(cells[commentIndex].v)
+
+            ? String(
+                cells[commentIndex].v
+              )
+
             : '';
 
 
-        if(commentText.trim()){
+        /*
+           Only name and comment
+           are collected.
 
-          addComment(
-            displayName,
-            commentText,
-            'Attendee'
-          );
+           Timestamp is completely ignored.
+        */
+
+        if(
+          commentText.trim()
+        ){
+
+          commentQueue.push({
+
+            name:
+              displayName,
+
+            text:
+              commentText
+
+          });
 
         }
 
-      });
+      }
 
-    }catch(error){
+    );
 
-      console.error(
-        'Comments could not be loaded:',
-        error
+
+
+    /* =================================================
+       DISPLAY COMMENTS ONE BY ONE
+    ================================================= */
+
+    let index = 0;
+
+
+    function showNextComment(){
+
+      if(
+        index >=
+        commentQueue.length
+      ){
+
+        return;
+
+      }
+
+
+      const comment =
+        commentQueue[index];
+
+
+      addComment(
+
+        comment.name,
+
+        comment.text,
+
+        'Attendee'
+
+      );
+
+
+      index++;
+
+
+      /*
+         2.5 seconds between comments.
+      */
+
+      setTimeout(
+
+        showNextComment,
+
+        2500
+
+      );
+
+    }
+
+
+
+    /*
+       Start first comment
+       after 800ms.
+    */
+
+    if(
+      commentQueue.length > 0
+    ){
+
+      setTimeout(
+
+        showNextComment,
+
+        800
+
       );
 
     }
@@ -625,60 +1590,132 @@
   }
 
 
-  loadComments();
+  catch(error){
 
+    console.error(
 
-  /* ---------- Local comment posting ---------- */
+      'Comments could not be loaded:',
 
-  function postComment(){
+      error
 
-    const text =
-      commentInput.value.trim();
-
-    if(!text) return;
-
-
-    const displayName =
-      name
-        ? name.split(' ')[0]
-        : 'You';
-
-
-    addComment(
-      displayName,
-      text,
-      'Attendee'
     );
 
+  }
 
-    commentsFeed.scrollTop =
-      commentsFeed.scrollHeight;
+}
 
-    commentInput.value = '';
+
+
+/*
+   Start comments.
+*/
+
+loadComments();
+
+
+
+/* =====================================================
+   POST USER COMMENT
+===================================================== */
+
+function postComment(){
+
+  const text =
+    commentInput.value.trim();
+
+
+  if(!text){
+
+    return;
 
   }
 
 
-  document
-    .getElementById('commentBtn')
-    .addEventListener(
-      'click',
-      postComment
-    );
+  const displayName =
+    name
+
+      ? name.split(' ')[0]
+
+      : 'You';
 
 
-  commentInput.addEventListener(
-    'keydown',
-    function(e){
+  /*
+     User comment also contains
+     absolutely NO timestamp.
+  */
 
-      if(e.key === 'Enter'){
-        postComment();
-      }
+  addComment(
+
+    displayName,
+
+    text,
+
+    'Attendee'
+
+  );
+
+
+  /*
+     Clear input.
+  */
+
+  commentInput.value = '';
+
+
+  /*
+     Keep focus.
+  */
+
+  commentInput.focus();
+
+}
+
+
+
+/* =====================================================
+   SEND BUTTON
+===================================================== */
+
+document
+  .getElementById(
+    'commentBtn'
+  )
+  .addEventListener(
+
+    'click',
+
+    postComment
+
+  );
+
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+commentInput.addEventListener(
+
+  'keydown',
+
+  function(e){
+
+    if(
+      e.key === 'Enter'
+    ){
+
+      e.preventDefault();
+
+      postComment();
 
     }
-  );
+
+  }
+
+);
 
 </script>
 
+
 </body>
-</html>
+  </html>

@@ -20,84 +20,47 @@
 
 <style>
 
-/* =====================================================
-   VARIABLES
-===================================================== */
-
 :root{
-
   --bg:#0F1117;
-
   --panel:#171A24;
-
   --field:#12141C;
-
   --line:#2A2E3D;
-
   --ink:#F2F0EB;
-
   --muted:#9095AC;
-
   --gold:#E8A33D;
-
   --teal:#3FBFAE;
-
   --red:#FF6B5E;
-
 }
-
-
-/* =====================================================
-   RESET
-===================================================== */
 
 *{
-
   box-sizing:border-box;
-
   margin:0;
-
   padding:0;
-
 }
-
 
 html,
 body{
-
   height:100%;
-
 }
 
-
 body{
-
   background:var(--bg);
-
   color:var(--ink);
-
   font-family:'Inter',sans-serif;
-
   line-height:1.5;
-
   -webkit-font-smoothing:antialiased;
 
   display:flex;
-
   flex-direction:column;
 
   overflow:hidden;
-
 }
-
 
 h1,
+.brand,
 .badge{
-
   font-family:'Space Grotesk',sans-serif;
-
 }
-
 
 
 /* =====================================================
@@ -105,39 +68,25 @@ h1,
 ===================================================== */
 
 .topbar{
-
   border-bottom:1px solid var(--line);
 
   padding:16px 20px;
 
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
 
   flex-shrink:0;
-
 }
-
 
 .brand{
-
-  font-family:'Space Grotesk',sans-serif;
-
   font-weight:700;
-
   font-size:14.5px;
-
 }
-
 
 .brand span{
-
   color:var(--gold);
-
 }
-
 
 
 /* =====================================================
@@ -145,30 +94,21 @@ h1,
 ===================================================== */
 
 .badge{
-
   display:inline-flex;
-
   align-items:center;
-
   gap:7px;
 
   font-size:11.5px;
-
   font-weight:700;
 
   letter-spacing:.06em;
-
   text-transform:uppercase;
 
   color:var(--red);
-
 }
 
-
 .badge .dot{
-
   width:8px;
-
   height:8px;
 
   border-radius:50%;
@@ -176,35 +116,25 @@ h1,
   background:var(--red);
 
   box-shadow:
-
     0 0 0 3px rgba(255,107,94,.18);
 
   animation:pulse 1.2s infinite;
-
 }
-
 
 @keyframes pulse{
 
   0%,
   100%{
-
     opacity:1;
-
     transform:scale(1);
-
   }
 
   50%{
-
     opacity:.4;
-
     transform:scale(.85);
-
   }
 
 }
-
 
 
 /* =====================================================
@@ -212,45 +142,81 @@ h1,
 ===================================================== */
 
 .video-frame{
-
   position:relative;
 
   width:100%;
 
-  padding-top:42%;
+  padding-top:56.25%;
 
   background:#000;
 
   flex-shrink:0;
 
   overflow:hidden;
-
 }
 
-
 .video-frame iframe{
-
   position:absolute;
 
   top:0;
-
   left:0;
 
   width:100%;
-
   height:100%;
 
   border:0;
-
 }
 
 
-/*
-   Transparent shield.
+/* =====================================================
+   DEBREEZE COVER
+===================================================== */
 
-   This prevents visitors from touching
-   the YouTube player and opening controls.
-*/
+.video-brand-overlay{
+
+  position:absolute;
+
+  top:9px;
+  left:12px;
+
+  width:215px;
+  height:62px;
+
+  z-index:30;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  background:#000;
+
+  color:#F2F0EB;
+
+  font-family:'Space Grotesk',sans-serif;
+
+  font-size:18px;
+
+  font-weight:700;
+
+  letter-spacing:.08em;
+
+  text-transform:uppercase;
+
+  border-radius:5px;
+
+  box-shadow:
+    0 2px 10px rgba(0,0,0,.45);
+
+  pointer-events:none;
+
+  user-select:none;
+}
+
+
+/* =====================================================
+   VIDEO TOUCH SHIELD
+===================================================== */
 
 .video-touch-shield{
 
@@ -258,7 +224,7 @@ h1,
 
   inset:0;
 
-  z-index:20;
+  z-index:40;
 
   background:transparent;
 
@@ -267,131 +233,18 @@ h1,
   touch-action:none;
 
   user-select:none;
-
 }
-
 
 
 /* =====================================================
-   GET STARTED CTA
-===================================================== */
-
-.cta-area{
-
-  display:none;
-
-  padding:14px 20px;
-
-  border-bottom:1px solid var(--line);
-
-  background:var(--bg);
-
-}
-
-
-.cta-area.show{
-
-  display:block;
-
-}
-
-
-.support-link{
-
-  display:block;
-
-  width:100%;
-
-  text-align:center;
-
-  color:var(--gold);
-
-  text-decoration:none;
-
-  font-weight:800;
-
-  font-size:15px;
-
-  letter-spacing:.01em;
-
-}
-
-
-/*
-   When video ends:
-
-   Bold
-   Bright
-   Pulsing
-   Blinking
-*/
-
-.cta-area.show .support-link{
-
-  animation:
-
-    ctaPulse 1s infinite,
-
-    ctaBlink 1.4s infinite;
-
-}
-
-
-@keyframes ctaPulse{
-
-  0%,
-  100%{
-
-    transform:scale(1);
-
-  }
-
-  50%{
-
-    transform:scale(1.04);
-
-  }
-
-}
-
-
-@keyframes ctaBlink{
-
-  0%,
-  45%{
-
-    opacity:1;
-
-  }
-
-  50%,
-  70%{
-
-    opacity:.45;
-
-  }
-
-  75%,
-  100%{
-
-    opacity:1;
-
-  }
-
-}
-
-
-
-/* =====================================================
-   META STRIP
+   WELCOME AREA
 ===================================================== */
 
 .meta-strip{
 
   display:flex;
 
-  justify-content:space-between;
-
+  justify-content:flex-start;
   align-items:center;
 
   padding:12px 20px;
@@ -403,31 +256,15 @@ h1,
   color:var(--muted);
 
   flex-shrink:0;
-
 }
-
-
-.meta-strip .viewers{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:6px;
-
-}
-
 
 .meta-strip strong{
-
   color:var(--ink);
-
 }
-
 
 
 /* =====================================================
-   COMMENTS
+   COMMENTS FEED
 ===================================================== */
 
 .comments-feed{
@@ -441,9 +278,12 @@ h1,
   -webkit-overflow-scrolling:touch;
 
   scroll-behavior:smooth;
-
 }
 
+
+/* =====================================================
+   COMMENT CARD
+===================================================== */
 
 .comment{
 
@@ -466,73 +306,52 @@ h1,
   transform:translateY(10px);
 
   animation:commentAppear .45s ease forwards;
-
 }
-
 
 @keyframes commentAppear{
 
   from{
-
     opacity:0;
-
     transform:translateY(10px);
-
   }
 
   to{
-
     opacity:1;
-
     transform:translateY(0);
-
   }
 
 }
 
-
 .avatar{
 
   width:32px;
-
   height:32px;
 
   border-radius:50%;
 
   background:
-
     linear-gradient(
-
       135deg,
-
       var(--teal),
-
       var(--gold)
-
     );
 
   flex-shrink:0;
-
 }
-
 
 .comment-body{
 
   flex:1;
 
   min-width:0;
-
 }
-
 
 .comment-name{
 
   font-weight:600;
 
   font-size:13.5px;
-
 }
-
 
 .comment-role{
 
@@ -543,9 +362,7 @@ h1,
   margin-left:6px;
 
   font-weight:400;
-
 }
-
 
 .comment-text{
 
@@ -556,17 +373,7 @@ h1,
   margin-top:3px;
 
   word-wrap:break-word;
-
 }
-
-
-/*
-   NO timestamp.
-   NO date.
-   NO "ago".
-   NO clock.
-*/
-
 
 .empty-note{
 
@@ -577,27 +384,22 @@ h1,
   text-align:center;
 
   padding:32px 0;
-
 }
 
 
-
 /* =====================================================
-   COMMENT FORM
+   BOTTOM COMMENT / CTA AREA
 ===================================================== */
 
-.comment-form{
+.bottom-area{
 
   display:flex;
 
   gap:10px;
 
   padding:
-
     14px
-
     20px
-
     calc(14px + env(safe-area-inset-bottom));
 
   border-top:1px solid var(--line);
@@ -605,13 +407,25 @@ h1,
   background:var(--bg);
 
   flex-shrink:0;
-
 }
 
 
-.comment-form input{
+/* =====================================================
+   COMMENT INPUT
+===================================================== */
+
+.comment-input-wrap{
+
+  display:flex;
 
   flex:1;
+
+  min-width:0;
+}
+
+.comment-form-input{
+
+  width:100%;
 
   background:var(--field);
 
@@ -626,29 +440,28 @@ h1,
   font-size:14.5px;
 
   font-family:inherit;
-
 }
 
-
-.comment-form input::placeholder{
+.comment-form-input::placeholder{
 
   color:#5C6079;
-
 }
 
-
-.comment-form input:focus{
+.comment-form-input:focus{
 
   outline:2px solid var(--teal);
 
   outline-offset:1px;
 
   border-color:var(--teal);
-
 }
 
 
-.comment-form button{
+/* =====================================================
+   SEND BUTTON
+===================================================== */
+
+.send-button{
 
   background:var(--gold);
 
@@ -669,16 +482,90 @@ h1,
   cursor:pointer;
 
   flex-shrink:0;
-
 }
 
-
-.comment-form button:active{
+.send-button:active{
 
   transform:scale(.97);
+}
+
+
+/* =====================================================
+   FINAL CTA
+===================================================== */
+
+.final-cta{
+
+  display:none;
+
+  width:100%;
+
+  min-height:52px;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  padding:13px 20px;
+
+  border-radius:28px;
+
+  background:var(--gold);
+
+  color:#1A1204;
+
+  text-decoration:none;
+
+  font-family:'Space Grotesk',sans-serif;
+
+  font-size:15px;
+
+  font-weight:800;
+
+  letter-spacing:.02em;
+
+  box-shadow:
+    0 0 0 rgba(232,163,61,0);
+}
+
+.final-cta.show{
+
+  display:flex;
+
+  animation:
+    ctaPulse 1s infinite,
+    ctaGlow 1.2s infinite;
+}
+
+@keyframes ctaPulse{
+
+  0%,
+  100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.035);
+  }
 
 }
 
+@keyframes ctaGlow{
+
+  0%,
+  100%{
+    box-shadow:
+      0 0 0 rgba(232,163,61,0);
+  }
+
+  50%{
+    box-shadow:
+      0 0 22px rgba(232,163,61,.55);
+  }
+
+}
 
 
 /* =====================================================
@@ -688,53 +575,40 @@ h1,
 @media(max-width:600px){
 
   .topbar{
-
     padding:14px 16px;
-
   }
-
 
   .video-frame{
-
     padding-top:56.25%;
-
   }
 
+  .video-brand-overlay{
 
-  .meta-strip{
+    top:8px;
+    left:10px;
 
-    padding:11px 16px;
-
-  }
-
-
-  .comments-feed{
-
-    padding:14px 16px;
-
-  }
-
-
-  .comment-form{
-
-    padding-left:16px;
-
-    padding-right:16px;
-
-  }
-
-
-  .comment-form button{
-
-    padding:0 18px;
-
-  }
-
-
-  .support-link{
+    width:185px;
+    height:55px;
 
     font-size:15px;
+  }
 
+  .meta-strip{
+    padding:11px 16px;
+  }
+
+  .comments-feed{
+    padding:14px 16px;
+  }
+
+  .bottom-area{
+
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .send-button{
+    padding:0 18px;
   }
 
 }
@@ -747,11 +621,8 @@ h1,
 @media(prefers-reduced-motion:reduce){
 
   *{
-
     animation:none !important;
-
     transition:none !important;
-
   }
 
 }
@@ -771,18 +642,12 @@ h1,
 <div class="topbar">
 
   <div class="brand">
-
     WEBINAR<span>.</span>
-
   </div>
 
-
   <span class="badge">
-
     <span class="dot"></span>
-
     LIVE
-
   </span>
 
 </div>
@@ -797,7 +662,12 @@ h1,
 
   <div id="youtubePlayer"></div>
 
+  <!-- Covers the date/name shown inside the video -->
+  <div class="video-brand-overlay">
+    DEBREEZE
+  </div>
 
+  <!-- Prevents YouTube controls appearing when touched -->
   <div
     class="video-touch-shield"
     aria-hidden="true"
@@ -808,55 +678,15 @@ h1,
 
 
 <!-- =====================================================
-     GET STARTED
+     WELCOME
      
-     Hidden until video ends.
-===================================================== -->
-
-<div
-  class="cta-area"
-  id="ctaArea"
->
-
-  <a
-    class="support-link"
-    id="supportLink"
-    href="https://t.me/debreeze_support"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-
-    CLICK HERE TO GET STARTED
-
-  </a>
-
-</div>
-
-
-
-<!-- =====================================================
-     META
+     NO COMMENT COUNTER
 ===================================================== -->
 
 <div class="meta-strip">
 
   <span id="welcomeNote">
-
     Welcome — enjoy the session.
-
-  </span>
-
-
-  <span class="viewers">
-
-    💬
-
-    <strong id="commentCount">
-      0
-    </strong>
-
-    comments
-
   </span>
 
 </div>
@@ -876,9 +706,7 @@ h1,
     class="empty-note"
     id="emptyNote"
   >
-
     No comments yet — be the first to share your thoughts.
-
   </p>
 
 </div>
@@ -886,26 +714,57 @@ h1,
 
 
 <!-- =====================================================
-     COMMENT INPUT
+     BOTTOM AREA
+     
+     BEFORE VIDEO ENDS:
+     INPUT + SEND
+
+     AFTER VIDEO ENDS:
+     CLICK HERE TO GET STARTED
 ===================================================== -->
 
-<div class="comment-form">
+<div
+  class="bottom-area"
+  id="bottomArea"
+>
 
-  <input
-    type="text"
-    id="commentInput"
-    placeholder="Drop your comment..."
-    autocomplete="off"
+  <div
+    class="comment-input-wrap"
+    id="commentInputWrap"
   >
+
+    <input
+      type="text"
+      id="commentInput"
+      class="comment-form-input"
+      placeholder="Drop your comment..."
+      autocomplete="off"
+    >
+
+  </div>
 
 
   <button
     id="commentBtn"
+    class="send-button"
   >
 
     Send
 
   </button>
+
+
+  <a
+    id="finalCTA"
+    class="final-cta"
+    href="https://t.me/debreeze_support"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+
+    CLICK HERE TO GET STARTED
+
+  </a>
 
 </div>
 
@@ -923,7 +782,6 @@ const params =
     window.location.search
   );
 
-
 const name =
   params.get('name');
 
@@ -932,16 +790,12 @@ if(name){
 
   const safeName =
     name
-
       .replace(/</g,'&lt;')
-
       .replace(/>/g,'&gt;');
-
 
   document.getElementById(
     'welcomeNote'
   ).innerHTML =
-
     `Welcome, <strong>${safeName}</strong>`;
 
 }
@@ -949,10 +803,10 @@ if(name){
 
 
 /* =====================================================
-   YOUTUBE
+   YOUTUBE PLAYER
 ===================================================== */
 
-let player;
+let player = null;
 
 let lastAllowedTime = 0;
 
@@ -960,11 +814,123 @@ let videoStarted = false;
 
 let videoFinished = false;
 
-let soundAttempted = false;
+let playerReady = false;
+
+
+/*
+   Unique storage key for this webinar.
+
+   This means the browser remembers the
+   position for this specific video.
+*/
+
+const VIDEO_PROGRESS_KEY =
+  'debreeze_webinar_AW4IqId5kdM_progress';
 
 
 const YOUTUBE_VIDEO_ID =
   'AW4IqId5kdM';
+
+
+
+/* =====================================================
+   GET SAVED VIDEO POSITION
+===================================================== */
+
+function getSavedPosition(){
+
+  try{
+
+    const saved =
+      localStorage.getItem(
+        VIDEO_PROGRESS_KEY
+      );
+
+    if(!saved){
+
+      return 0;
+
+    }
+
+    const position =
+      parseFloat(saved);
+
+    if(
+      Number.isFinite(position) &&
+      position > 0
+    ){
+
+      return position;
+
+    }
+
+  }
+  catch(error){
+
+    console.log(
+      'Could not read saved position:',
+      error
+    );
+
+  }
+
+  return 0;
+
+}
+
+
+
+/* =====================================================
+   SAVE VIDEO POSITION
+===================================================== */
+
+function saveVideoPosition(){
+
+  if(
+    !player ||
+    !playerReady ||
+    videoFinished
+  ){
+
+    return;
+
+  }
+
+  try{
+
+    const currentTime =
+      player.getCurrentTime();
+
+
+    if(
+      Number.isFinite(currentTime) &&
+      currentTime >= 0
+    ){
+
+      localStorage.setItem(
+
+        VIDEO_PROGRESS_KEY,
+
+        String(currentTime)
+
+      );
+
+      lastAllowedTime =
+        currentTime;
+
+    }
+
+  }
+  catch(error){
+
+    console.log(
+      'Could not save video position:',
+      error
+    );
+
+  }
+
+}
 
 
 
@@ -984,23 +950,9 @@ function onYouTubeIframeAPIReady(){
         videoId:
           YOUTUBE_VIDEO_ID,
 
-
         playerVars:{
 
-          /*
-             AUTOPLAY ON
-          */
-
           autoplay:1,
-
-
-          /*
-             IMPORTANT:
-
-             We are NOT setting mute:1.
-
-             The video is requested with sound.
-          */
 
           controls:0,
 
@@ -1017,7 +969,6 @@ function onYouTubeIframeAPIReady(){
           iv_load_policy:3
 
         },
-
 
         events:{
 
@@ -1043,13 +994,50 @@ function onYouTubeIframeAPIReady(){
 
 function onPlayerReady(event){
 
-  player = event.target;
+  player =
+    event.target;
+
+  playerReady = true;
 
 
   /*
-     Try to play WITH SOUND.
+     Get the saved position BEFORE playing.
 
-     Some mobile browsers may block this.
+     This is the important part that prevents
+     the video from starting from zero again.
+  */
+
+  const savedPosition =
+    getSavedPosition();
+
+
+  if(savedPosition > 0){
+
+    try{
+
+      player.seekTo(
+        savedPosition,
+        true
+      );
+
+      lastAllowedTime =
+        savedPosition;
+
+    }
+    catch(error){
+
+      console.log(
+        'Could not resume video:',
+        error
+      );
+
+    }
+
+  }
+
+
+  /*
+     Try to autoplay with sound.
   */
 
   try{
@@ -1060,10 +1048,7 @@ function onPlayerReady(event){
 
     player.playVideo();
 
-    soundAttempted = true;
-
   }
-
   catch(error){
 
     console.log(
@@ -1074,14 +1059,11 @@ function onPlayerReady(event){
   }
 
 
-  lastAllowedTime = 0;
-
-
-
   /*
-     Monitor video position.
+     Save the position every second.
 
-     Prevent large seeking jumps.
+     So if the visitor leaves,
+     the latest position is already stored.
   */
 
   setInterval(
@@ -1090,6 +1072,7 @@ function onPlayerReady(event){
 
       if(
         !player ||
+        !playerReady ||
         videoFinished
       ){
 
@@ -1118,62 +1101,64 @@ function onPlayerReady(event){
           player.getCurrentTime();
 
 
-        if(!videoStarted){
+        /*
+           Protect against seeking.
+        */
+
+        if(videoStarted){
+
+          const difference =
+            currentTime -
+            lastAllowedTime;
+
+
+          if(
+
+            difference > 2.5
+
+            ||
+
+            difference < -1.5
+
+          ){
+
+            player.seekTo(
+
+              lastAllowedTime,
+
+              true
+
+            );
+
+          }
+
+          else{
+
+            lastAllowedTime =
+              currentTime;
+
+          }
+
+        }
+        else{
 
           lastAllowedTime =
             currentTime;
 
-          return;
-
         }
-
-
-        const difference =
-          currentTime -
-          lastAllowedTime;
 
 
         /*
-           Prevent forward/backward seeking.
+           Save current position.
         */
 
-        if(
-
-          difference > 2.5
-
-          ||
-
-          difference < -1.5
-
-        ){
-
-          player.seekTo(
-
-            lastAllowedTime,
-
-            true
-
-          );
-
-        }
-
-        else if(
-
-          state ===
-          YT.PlayerState.PLAYING
-
-        ){
-
-          lastAllowedTime =
-            currentTime;
-
-        }
+        saveVideoPosition();
 
       }
 
     },
 
-    500
+    1000
 
   );
 
@@ -1182,13 +1167,14 @@ function onPlayerReady(event){
 
 
 /* =====================================================
-   VIDEO STATE
+   PLAYER STATE CHANGE
 ===================================================== */
 
 function onPlayerStateChange(event){
 
+
   /*
-     PLAYING
+     VIDEO PLAYING
   */
 
   if(
@@ -1202,7 +1188,7 @@ function onPlayerStateChange(event){
 
 
     /*
-       Keep sound enabled.
+       Keep audio enabled.
     */
 
     try{
@@ -1212,8 +1198,29 @@ function onPlayerStateChange(event){
       player.setVolume(100);
 
     }
-
     catch(error){}
+
+  }
+
+
+
+  /*
+     VIDEO PAUSED
+  */
+
+  if(
+
+    event.data ===
+    YT.PlayerState.PAUSED
+
+  ){
+
+    /*
+       Immediately save the exact
+       point where the video stopped.
+    */
+
+    saveVideoPosition();
 
   }
 
@@ -1232,20 +1239,37 @@ function onPlayerStateChange(event){
 
     videoFinished = true;
 
-
     lastAllowedTime =
       player.getDuration();
 
 
     /*
-       Show CTA.
+       Video is finished.
+
+       Remove saved progress because
+       the visitor has completed the webinar.
     */
 
-    showCTA();
+    try{
+
+      localStorage.removeItem(
+        VIDEO_PROGRESS_KEY
+      );
+
+    }
+    catch(error){}
 
 
     /*
-       Try notification beep.
+       Replace the comment input area
+       with the CTA.
+    */
+
+    showFinalCTA();
+
+
+    /*
+       Beep.
     */
 
     playBeep();
@@ -1257,27 +1281,63 @@ function onPlayerStateChange(event){
 
 
 /* =====================================================
-   SHOW CTA AFTER VIDEO ENDS
+   SHOW FINAL CTA
 ===================================================== */
 
-function showCTA(){
+function showFinalCTA(){
 
-  const cta =
+  const inputWrap =
     document.getElementById(
-      'ctaArea'
+      'commentInputWrap'
+    );
+
+  const sendButton =
+    document.getElementById(
+      'commentBtn'
+    );
+
+  const finalCTA =
+    document.getElementById(
+      'finalCTA'
     );
 
 
-  if(!cta){
+  /*
+     Remove comment input.
+  */
 
-    return;
+  if(inputWrap){
+
+    inputWrap.style.display =
+      'none';
 
   }
 
 
-  cta.classList.add(
-    'show'
-  );
+  /*
+     Remove Send button.
+  */
+
+  if(sendButton){
+
+    sendButton.style.display =
+      'none';
+
+  }
+
+
+  /*
+     Show CTA in exactly
+     the same bottom area.
+  */
+
+  if(finalCTA){
+
+    finalCTA.classList.add(
+      'show'
+    );
+
+  }
 
 }
 
@@ -1365,17 +1425,84 @@ function playBeep(){
     );
 
   }
-
   catch(error){
 
     console.log(
-      'Beep blocked by browser:',
+      'Beep blocked:',
       error
     );
 
   }
 
 }
+
+
+
+/* =====================================================
+   SAVE WHEN PAGE IS HIDDEN
+===================================================== */
+
+/*
+   This is specifically for:
+
+   - Minimising Chrome
+   - Switching apps
+   - Locking the phone
+   - Opening another tab
+   - Leaving the page
+
+   We save the exact current position
+   before the browser puts the page to sleep.
+*/
+
+document.addEventListener(
+
+  'visibilitychange',
+
+  function(){
+
+    if(
+      document.visibilityState ===
+      'hidden'
+    ){
+
+      saveVideoPosition();
+
+    }
+
+  }
+
+);
+
+
+
+/* =====================================================
+   SAVE BEFORE PAGE CLOSES
+===================================================== */
+
+window.addEventListener(
+
+  'pagehide',
+
+  function(){
+
+    saveVideoPosition();
+
+  }
+
+);
+
+window.addEventListener(
+
+  'beforeunload',
+
+  function(){
+
+    saveVideoPosition();
+
+  }
+
+);
 
 
 
@@ -1388,10 +1515,8 @@ const youtubeScript =
     'script'
   );
 
-
 youtubeScript.src =
   'https://www.youtube.com/iframe_api';
-
 
 document.head.appendChild(
   youtubeScript
@@ -1408,29 +1533,18 @@ const commentsFeed =
     'commentsFeed'
   );
 
-
 const commentInput =
   document.getElementById(
     'commentInput'
   );
 
 
-const commentCount =
-  document.getElementById(
-    'commentCount'
-  );
-
-
-let count = 0;
-
-
-
-/* =====================================================
-   GOOGLE SHEET
-===================================================== */
+/*
+   NEW GOOGLE SHEET
+*/
 
 const GOOGLE_SHEET_ID =
-  '1TWYiRuuZiLuuxlTwGkxgZvW97Yyxn1nV';
+  '17x9WaxFXhbhgCG4v_mJZJVheGa0F0515';
 
 
 
@@ -1480,10 +1594,6 @@ function addComment(
   }
 
 
-  /*
-     Remove empty message.
-  */
-
   const emptyNote =
     document.getElementById(
       'emptyNote'
@@ -1496,14 +1606,6 @@ function addComment(
 
   }
 
-
-  /*
-     Create comment.
-
-     IMPORTANT:
-
-     There is NO timestamp here.
-  */
 
   const el =
     document.createElement(
@@ -1541,8 +1643,9 @@ function addComment(
 
 
   /*
-     Put the actual comment text
-     into the paragraph.
+     Actual comment text.
+     
+     No timestamp.
   */
 
   el.querySelector(
@@ -1554,12 +1657,6 @@ function addComment(
   commentsFeed.appendChild(
     el
   );
-
-
-  count++;
-
-  commentCount.textContent =
-    count;
 
 
   /*
@@ -1589,7 +1686,7 @@ function addComment(
 
 
 /* =====================================================
-   LOAD GOOGLE SHEET COMMENTS
+   LOAD COMMENTS
 ===================================================== */
 
 async function loadComments(){
@@ -1617,12 +1714,32 @@ async function loadComments(){
       await response.text();
 
 
+    const start =
+      raw.indexOf('{');
+
+
+    const end =
+      raw.lastIndexOf('}');
+
+
+    if(
+      start === -1 ||
+      end === -1
+    ){
+
+      throw new Error(
+        'Invalid Google Sheet response'
+      );
+
+    }
+
+
     const jsonText =
       raw.substring(
 
-        raw.indexOf('{'),
+        start,
 
-        raw.lastIndexOf('}') + 1
+        end + 1
 
       );
 
@@ -1642,7 +1759,7 @@ async function loadComments(){
 
 
     /*
-       Get column names.
+       Read sheet headers.
     */
 
     const headers =
@@ -1661,10 +1778,9 @@ async function loadComments(){
       );
 
 
-
-    /* =================================================
-       FIND NAME COLUMN
-    ================================================= */
+    /*
+       Find NAME column.
+    */
 
     let nameIndex =
       headers.findIndex(
@@ -1698,10 +1814,9 @@ async function loadComments(){
       );
 
 
-
-    /* =================================================
-       FIND COMMENT COLUMN
-    ================================================= */
+    /*
+       Find COMMENT column.
+    */
 
     let commentIndex =
       headers.findIndex(
@@ -1735,47 +1850,90 @@ async function loadComments(){
       );
 
 
+    /*
+       Find timestamp.
 
-    /* =================================================
-       SMART FALLBACK
-       
-       Your sheet appears to be:
+       This column is NEVER displayed.
+    */
 
-       Column A = Timestamp
-       Column B = Name
-       Column C = Comment
+    const timestampIndex =
+      headers.findIndex(
 
-       So if headers aren't detected,
-       DO NOT use Column A as the name.
-    ================================================= */
+        function(header){
 
-    if(
-      nameIndex === -1 &&
-      commentIndex === -1
-    ){
+          return(
+
+            header === 'timestamp'
+
+            ||
+
+            header === 'time'
+
+            ||
+
+            header === 'date'
+
+            ||
+
+            header === 'datetime'
+
+            ||
+
+            header === 'date/time'
+
+          );
+
+        }
+
+      );
+
+
+    /*
+       If there is:
+
+       Timestamp | Name | Comment
+
+       use:
+
+       Name = column B
+       Comment = column C
+    */
+
+    if(nameIndex === -1){
 
       if(
+        timestampIndex === 0 &&
         columns.length >= 3
       ){
 
-        /*
-           Skip timestamp.
-        */
-
         nameIndex = 1;
+
+      }
+      else if(
+        columns.length >= 2
+      ){
+
+        nameIndex = 0;
+
+      }
+
+    }
+
+
+    if(commentIndex === -1){
+
+      if(
+        timestampIndex === 0 &&
+        columns.length >= 3
+      ){
 
         commentIndex = 2;
 
       }
-
-      else{
-
-        /*
-           If only two columns exist,
-           assume Name + Comment.
-        */
-
-        nameIndex = 0;
+      else if(
+        nameIndex === 0 &&
+        columns.length >= 2
+      ){
 
         commentIndex = 1;
 
@@ -1785,49 +1943,8 @@ async function loadComments(){
 
 
     /*
-       If only name was found,
-       find a reasonable comment column.
+       Build comment queue.
     */
-
-    if(
-      nameIndex === -1
-    ){
-
-      nameIndex = 1;
-
-    }
-
-
-    if(
-      commentIndex === -1
-    ){
-
-      /*
-         If timestamp + name + comment
-         exists, use third column.
-      */
-
-      if(
-        columns.length >= 3
-      ){
-
-        commentIndex = 2;
-
-      }
-
-      else{
-
-        commentIndex = 1;
-
-      }
-
-    }
-
-
-
-    /* =================================================
-       BUILD COMMENT QUEUE
-    ================================================= */
 
     const commentQueue = [];
 
@@ -1840,19 +1957,20 @@ async function loadComments(){
           row.c || [];
 
 
-        /*
-           NAME
-
-           Timestamp is NEVER used.
-        */
-
-        let displayName = 'Attendee';
+        let displayName =
+          'Attendee';
 
 
         if(
+
+          nameIndex !== -1 &&
+
           cells[nameIndex] &&
+
           cells[nameIndex].v !== undefined &&
+
           cells[nameIndex].v !== null
+
         ){
 
           displayName =
@@ -1863,20 +1981,20 @@ async function loadComments(){
         }
 
 
-        /*
-           COMMENT
-
-           This is the actual
-           comment/message column.
-        */
-
-        let commentText = '';
+        let commentText =
+          '';
 
 
         if(
+
+          commentIndex !== -1 &&
+
           cells[commentIndex] &&
+
           cells[commentIndex].v !== undefined &&
+
           cells[commentIndex].v !== null
+
         ){
 
           commentText =
@@ -1888,12 +2006,11 @@ async function loadComments(){
 
 
         /*
-           Ignore rows without comments.
+           Only comments with actual text
+           are shown.
         */
 
-        if(
-          commentText
-        ){
+        if(commentText){
 
           commentQueue.push({
 
@@ -1912,10 +2029,9 @@ async function loadComments(){
     );
 
 
-
-    /* =================================================
-       SHOW COMMENTS ONE BY ONE
-    ================================================= */
+    /*
+       Show comments one by one.
+    */
 
     let index = 0;
 
@@ -1965,12 +2081,8 @@ async function loadComments(){
     }
 
 
-    /*
-       Start comments.
-    */
-
     if(
-      commentQueue.length
+      commentQueue.length > 0
     ){
 
       setTimeout(
@@ -1984,7 +2096,6 @@ async function loadComments(){
     }
 
   }
-
   catch(error){
 
     console.error(
@@ -2000,17 +2111,12 @@ async function loadComments(){
 }
 
 
-
-/* =====================================================
-   START COMMENT LOADING
-===================================================== */
-
 loadComments();
 
 
 
 /* =====================================================
-   USER COMMENT
+   POST USER COMMENT
 ===================================================== */
 
 function postComment(){
@@ -2033,12 +2139,6 @@ function postComment(){
 
       : 'You';
 
-
-  /*
-     Add immediately.
-
-     No timestamp.
-  */
 
   addComment(
 
@@ -2079,7 +2179,7 @@ document
 
 
 /* =====================================================
-   ENTER KEY
+   ENTER TO SEND
 ===================================================== */
 
 commentInput.addEventListener(
